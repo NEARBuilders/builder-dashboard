@@ -35,11 +35,7 @@ export default function Sidebar({ className }: SidebarProps) {
           isMinimized ? 'justify-center ' : 'justify-between'
         )}
       >
-        {!isMinimized && (
-          <h1 className="text-2xl font-bold">
-            <Logo />
-          </h1>
-        )}
+        {!isMinimized && <Logo variant="desktop-sidebar" />}
         <ChevronsLeft
           className={cn(
             'size-8 cursor-pointer rounded-full border bg-background text-foreground',
