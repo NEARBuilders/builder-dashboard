@@ -1,19 +1,63 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/9113740/201498864-2a900c64-d88f-4ed4-b5cf-770bcb57e1f5.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-</picture>
+<!-- markdownlint-disable MD014 -->
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD041 -->
+<!-- markdownlint-disable MD029 -->
 
-<div align="center"><strong>React Admin Dashboard Starter Template With Shadcn-ui</strong></div>
-<div align="center">Built with the Vite + React Ts</div>
-<br />
 <div align="center">
-<a href="https://react-shadcn-dashboard-starter.vercel.app/">View Demo</a>
-<span>
+
+<h1 style="font-size: 2.5rem; font-weight: bold;">Builder Dashboard</h1>
+
+  <p>
+    <strong>Homebase for Build DAO management</strong>
+  </p>
+
 </div>
 
-## Overview
+<details>
+  <summary>Table of Contents</summary>
 
-This is a starter template using the following stack:
+- [Getting Started](#getting-started)
+  - [Installing dependencies](#installing-dependencies)
+  - [Running the app](#running-the-app)
+  - [Building for production](#building-for-production)
+  - [Running tests](#running-tests)
+- [Contributing](#contributing)
+
+</details>
+
+## Getting Started
+
+### Installing dependencies
+
+```bash
+pnpm install
+```
+
+### Running the app
+
+First, run the development server:
+
+```bash
+pnpm run dev
+```
+
+### Building for production
+
+```bash
+pnpm run build
+```
+
+### Running tests
+
+```bash
+pnpm run test
+```
+
+See the full [testing guide](./playwright-tests/README.md).
+
+## Project Structure
+
+This project uses [@Kiranism](https://github.com/Kiranism)'s beauitful [react-shadcn-starter-dashboard](https://github.com/Kiranism/react-shadcn-dashboard-starter), which is built on the following stack:
 
 - Js Library - [React 18](https://react.dev/)
 - Language - [TypeScript](https://www.typescriptlang.org)
@@ -27,22 +71,23 @@ This is a starter template using the following stack:
 - Formatting - [Prettier](https://prettier.io)
 - Pre-commit hook - [Husky](https://typicode.github.io/husky/)
 
-## Pages
+It also includes further integrations to connect to the [NEAR Protocol](https://near.org/):
 
-| Pages                                                                  | Specifications                                                                   |
-| :--------------------------------------------------------------------- | :------------------------------------------------------------------------------- |
-| [Signup](https://react-shadcn-dashboard-starter.vercel.app/login)      | Custom auth.                                                                     |
-| [Dashboard](https://react-shadcn-dashboard-starter.vercel.app/)        | Cards with recharts graphs for analytics with dark mode ✅.                      |
-| [Students](https://react-shadcn-dashboard-starter.vercel.app/students) | Tanstack tables with students details with server side searching, pagination etc |
-| [404](https://react-shadcn-dashboard-starter.vercel.app/404)           | Not Found Page                                                                   |
-| -                                                                      | -                                                                                |
+- NEAR Client - [Naxios](https://github.com/wpdas/naxios)
+- Wallet - [NEAR Wallet Selector](https://github.com/near/wallet-selector)
 
-## Getting Started
+## Contributing
 
-Follow these steps to clone the repository and start the development server:
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-- `git clone https://github.com/Kiranism/react-shadcn-dashboard-starter.git`
-- `npm install`
-- `npm run dev`
+If you're interested in contributing to this project, please read the [contribution guide](./CONTRIBUTING).
 
-You should now be able to access the application at http://localhost:5173.
+<div align="right">
+<a href="https://nearbuilders.org" target="_blank">
+<img
+  src="https://builders.mypinata.cloud/ipfs/QmWt1Nm47rypXFEamgeuadkvZendaUvAkcgJ3vtYf1rBFj"
+  alt="Near Builders"
+  height="40"
+/>
+</a>
+</div>
