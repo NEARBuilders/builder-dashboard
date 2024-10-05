@@ -8,6 +8,7 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useWallet } from '@/hooks/use-wallet';
 import { useRouter } from '@/routes/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -21,6 +22,8 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm() {
+  const { wallet } = useWallet();
+
   const router = useRouter();
   const [loading] = useState(false);
   const defaultValues = {
@@ -38,7 +41,7 @@ export default function UserAuthForm() {
 
   return (
     <>
-      <Form {...form}>
+      {/* <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-2"
@@ -60,12 +63,16 @@ export default function UserAuthForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
-          <Button disabled={loading} className="ml-auto w-full" type="submit">
-            Continue With Email
-          </Button>
-        </form>
+      <Button
+        disabled={loading}
+        className="ml-auto w-full"
+        onClick={() => wallet?.signIn()}
+      >
+        Connect Wallet
+      </Button>
+      {/* </form>
       </Form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
@@ -76,7 +83,7 @@ export default function UserAuthForm() {
             Or continue with
           </span>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import ThemeProvider from './theme-provider';
 import { SidebarProvider } from '@/hooks/use-sidebar';
+import AuthProvider from './auth-provider';
 
 export const queryClient = new QueryClient();
 
@@ -40,14 +41,16 @@ export default function AppProvider({
     <Suspense>
       <HelmetProvider>
         <BrowserRouter>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <QueryClientProvider client={queryClient}>
-              <ReactQueryDevtools />
-              <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-                <SidebarProvider>{children}</SidebarProvider>
-              </ThemeProvider>
-            </QueryClientProvider>
-          </ErrorBoundary>
+          <AuthProvider>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <QueryClientProvider client={queryClient}>
+                <ReactQueryDevtools />
+                <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+                  <SidebarProvider>{children}</SidebarProvider>
+                </ThemeProvider>
+              </QueryClientProvider>
+            </ErrorBoundary>
+          </AuthProvider>
         </BrowserRouter>
       </HelmetProvider>
     </Suspense>

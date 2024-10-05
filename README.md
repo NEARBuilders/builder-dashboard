@@ -75,6 +75,7 @@ It also includes further integrations to connect to the [NEAR Protocol](https://
 
 - NEAR Client - [Naxios](https://github.com/wpdas/naxios)
 - Wallet - [NEAR Wallet Selector](https://github.com/near/wallet-selector)
+- State management - [Zustand](https://github.com/pmndrs/zustand)
 
 ## Customizing
 
@@ -91,6 +92,10 @@ Set the assets for logo-icon and logo-text in [assets](./src/assets/). Further c
 ### Fonts
 
 Import the font at the top of [index.css](./src/index.css), then set the font-family to the font name.
+
+### Wallets
+
+To add support for new wallets, modify the wallet selector setup in [lib/wallet](./src/lib/wallet.ts).
 
 ## Contributing
 
