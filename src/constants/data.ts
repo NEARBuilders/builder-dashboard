@@ -8,10 +8,10 @@ export const navItems: NavItem[] = [
     label: 'Dashboard'
   },
   {
-    title: 'Students',
-    href: '/student',
+    title: 'Members',
+    href: '/member',
     icon: 'user',
-    label: 'Student'
+    label: 'Member'
   },
   {
     title: 'Login',
@@ -108,7 +108,7 @@ export const dashboardCard = [
   {
     date: 'Today',
     total: 2000,
-    role: 'Students',
+    role: 'Members',
     color: 'bg-[#EC4D61] bg-opacity-40'
   },
   {

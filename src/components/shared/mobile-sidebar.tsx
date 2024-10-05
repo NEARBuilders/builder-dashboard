@@ -3,6 +3,7 @@ import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { navItems } from '@/constants/data';
 import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '@/components/dao/logo';
 
 type TMobileSidebarProps = {
   className?: string;
@@ -20,7 +21,7 @@ export default function MobileSidebar({
           <div className="space-y-4 py-4">
             <div className="space-y-4 px-3 py-2">
               <Link to="/" className="px-2 py-2 text-2xl font-bold text-white ">
-                Logo
+                <Logo />
               </Link>
               <div className="space-y-1 px-2">
                 <DashboardNav items={navItems} setOpen={setSidebarOpen} />

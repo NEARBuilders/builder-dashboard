@@ -1,5 +1,5 @@
 import axios from 'axios';
-// ---------------------------- Student API ------------------------------------------------- //
+// ---------------------------- Member API ------------------------------------------------- //
 // export async function resendEmail(email: string) {
 //     try {
 //       const res = await axios.post("/auth/register/resend-email/", { email });
@@ -10,7 +10,7 @@ import axios from 'axios';
 //     }
 // }
 
-export async function getStudents(
+export async function getMembers(
   offset: number,
   pageLimit: number,
   country: string

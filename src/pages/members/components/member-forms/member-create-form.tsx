@@ -12,7 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const studentFormSchema = z
+const memberFormSchema = z
   .object({
     firstname: z
       .string({ required_error: 'First name is required' })
@@ -32,15 +32,15 @@ const studentFormSchema = z
     path: ['confirmPassword']
   });
 
-type StudentFormSchemaType = z.infer<typeof studentFormSchema>;
+type MemberFormSchemaType = z.infer<typeof memberFormSchema>;
 
-const StudentCreateForm = ({ modalClose }: { modalClose: () => void }) => {
-  const form = useForm<StudentFormSchemaType>({
-    resolver: zodResolver(studentFormSchema),
+const MemberCreateForm = ({ modalClose }: { modalClose: () => void }) => {
+  const form = useForm<MemberFormSchemaType>({
+    resolver: zodResolver(memberFormSchema),
     defaultValues: {}
   });
 
-  const onSubmit = (values: StudentFormSchemaType) => {
+  const onSubmit = (values: MemberFormSchemaType) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
@@ -48,12 +48,8 @@ const StudentCreateForm = ({ modalClose }: { modalClose: () => void }) => {
 
   return (
     <div className="px-2">
-      {/* <div className="flex items-center justify-center text-2xl font-bold">
-        {'<Logo/>'}
-      </div> */}
-
       <Heading
-        title={'Create New Student'}
+        title={'Create New Member'}
         description={''}
         className="space-y-2 py-4 text-center"
       />
@@ -207,7 +203,7 @@ const StudentCreateForm = ({ modalClose }: { modalClose: () => void }) => {
               Cancel
             </Button>
             <Button type="submit" className="rounded-full" size="lg">
-              Create Student
+              Create Member
             </Button>
           </div>
         </form>
@@ -216,4 +212,4 @@ const StudentCreateForm = ({ modalClose }: { modalClose: () => void }) => {
   );
 };
 
-export default StudentCreateForm;
+export default MemberCreateForm;

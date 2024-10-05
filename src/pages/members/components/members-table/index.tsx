@@ -1,21 +1,18 @@
 import DataTable from '@/components/shared/data-table';
 import { columns } from './columns';
-import StudentTableActions from './student-table-action';
+import MemberTableActions from './member-table-action';
 
-type TStudentsTableProps = {
+type TMembersTableProps = {
   users: any;
   page: number;
   totalUsers: number;
   pageCount: number;
 };
 
-export default function StudentFeedTable({
-  users,
-  pageCount
-}: TStudentsTableProps) {
+export default function MembersTable({ users, pageCount }: TMembersTableProps) {
   return (
     <>
-      <StudentTableActions />
+      <MemberTableActions />
       {users && (
         <DataTable columns={columns} data={users} pageCount={pageCount} />
       )}

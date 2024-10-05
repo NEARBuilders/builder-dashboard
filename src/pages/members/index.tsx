@@ -1,17 +1,17 @@
 import PageHead from '@/components/shared/page-head';
-import { useGetStudents } from './queries/queries';
-import StudentsTable from './components/students-table';
+import { useGetMembers } from './queries/queries';
+import MembersTable from './components/members-table';
 import { useSearchParams } from 'react-router-dom';
 import { DataTableSkeleton } from '@/components/shared/data-table-skeleton';
 import { Breadcrumbs } from '@/components/shared/breadcrumbs';
 
-export default function StudentPage() {
+export default function MemberPage() {
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get('page') || 1);
   const pageLimit = Number(searchParams.get('limit') || 10);
   const country = searchParams.get('search') || null;
   const offset = (page - 1) * pageLimit;
-  const { data, isLoading } = useGetStudents(offset, pageLimit, country);
+  const { data, isLoading } = useGetMembers(offset, pageLimit, country);
   const users = data?.users;
   const totalUsers = data?.total_users; //1000
   const pageCount = Math.ceil(totalUsers / pageLimit);
@@ -30,14 +30,14 @@ export default function StudentPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <PageHead title="Student Management | App" />
+      <PageHead title="Member Management | App" />
       <Breadcrumbs
         items={[
           { title: 'Dashboard', link: '/' },
-          { title: 'Students', link: '/students' }
+          { title: 'Members', link: '/members' }
         ]}
       />
-      <StudentsTable
+      <MembersTable
         users={users}
         page={page}
         totalUsers={totalUsers}

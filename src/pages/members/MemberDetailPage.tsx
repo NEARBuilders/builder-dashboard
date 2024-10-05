@@ -6,16 +6,16 @@ import { useRouter } from '@/routes/hooks';
 import { ChevronLeftIcon, ShareIcon } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import InterestChannel from './components/interest-channel';
-import StudentFeedTable from './components/student-feed-table';
-import { useGetStudents } from './queries/queries';
+import MemberFeedTable from './components/member-feed-table';
+import { useGetMembers } from './queries/queries';
 
-export default function StudentDetailPage() {
+export default function MemberDetailPage() {
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get('page') || 1);
   const pageLimit = Number(searchParams.get('limit') || 10);
   const country = searchParams.get('search') || null;
   const offset = (page - 1) * pageLimit;
-  const { data, isLoading } = useGetStudents(offset, pageLimit, country);
+  const { data, isLoading } = useGetMembers(offset, pageLimit, country);
   const users = data?.users;
   const totalUsers = data?.total_users; //1000
   const pageCount = Math.ceil(totalUsers / pageLimit);
@@ -58,7 +58,7 @@ export default function StudentDetailPage() {
             </CardHeader>
             <CardContent className="text-sm">
               Hello! I'm Srikkath, your dedicated admin at Kutubi, ensuring a
-              seamless and enriching experience for teachers, students, and
+              seamless and enriching experience for teachers, members, and
               parents. Feel free to reach out for any assistance or feedback
             </CardContent>
           </Card>
@@ -136,7 +136,7 @@ export default function StudentDetailPage() {
         <InterestChannel title="Interest" />
         <InterestChannel title="Interest" />
       </div>
-      <StudentFeedTable
+      <MemberFeedTable
         users={users}
         page={page}
         totalUsers={totalUsers}
