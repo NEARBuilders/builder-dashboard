@@ -88,6 +88,10 @@ Modify :root (light) and :dark values in [index.css](./src/index.css) -- convert
 
 Set the assets for logo-icon and logo-text in [assets](./src/assets/). Further configure by changing elements for specific variants (main-hero, mobile-sidebar, dashboard-sidebar, etc) in [components/dao](./src/components/dao).
 
+### Fonts
+
+Import the font at the top of [index.css](./src/index.css), then set the font-family to the font name.
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
