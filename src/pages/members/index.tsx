@@ -1,20 +1,54 @@
-import PageHead from '@/components/shared/page-head';
-import { useGetMembers } from './queries/queries';
-import MembersTable from './components/members-table';
-import { useSearchParams } from 'react-router-dom';
-import { DataTableSkeleton } from '@/components/shared/data-table-skeleton';
 import { Breadcrumbs } from '@/components/shared/breadcrumbs';
+import { DataTableSkeleton } from '@/components/shared/data-table-skeleton';
+import PageHead from '@/components/shared/page-head';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Member } from '@/lib/dao/members';
+import Fuse from 'fuse.js';
+import debounce from 'lodash/debounce';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import MembersTable from './components/members-table';
+import { useGetMembers } from './queries/queries';
 
 export default function MemberPage() {
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get('page') || 1);
-  const pageLimit = Number(searchParams.get('limit') || 10);
-  const country = searchParams.get('search') || null;
-  const offset = (page - 1) * pageLimit;
-  const { data, isLoading } = useGetMembers(offset, pageLimit, country);
-  const users = data?.users;
-  const totalUsers = data?.total_users; //1000
-  const pageCount = Math.ceil(totalUsers / pageLimit);
+  const pageLimit = Number(searchParams.get('limit') || 20);
+  const searchQuery = searchParams.get('search') || '';
+
+  const { data: members, isLoading, isError, error } = useGetMembers();
+
+  const [filteredUsers, setFilteredUsers] = useState<Member[]>([]);
+  const [paginatedUsers, setPaginatedUsers] = useState<Member[]>([]);
+
+  useEffect(() => {
+    if (members) {
+      const debouncedSearch = debounce((query) => {
+        if (!query) {
+          setFilteredUsers(members);
+          return;
+        }
+
+        const fuse = new Fuse(members, {
+          keys: ['id', 'roles'], // adjust these fields based on your user object structure
+          threshold: 0.3,
+          includeScore: true
+        });
+
+        const results = fuse.search(query);
+        setFilteredUsers(results.map((result) => result.item));
+      }, 300);
+
+      debouncedSearch(searchQuery);
+
+      return () => debouncedSearch.cancel();
+    }
+  }, [members, searchQuery]);
+
+  useEffect(() => {
+    const offset = (page - 1) * pageLimit;
+    setPaginatedUsers(filteredUsers.slice(offset, offset + pageLimit));
+  }, [filteredUsers, page, pageLimit]);
 
   if (isLoading) {
     return (
@@ -28,6 +62,22 @@ export default function MemberPage() {
     );
   }
 
+  if (isError) {
+    return (
+      <div className="p-4 md:p-8">
+        <Alert variant="destructive">
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>
+            {error?.message || 'An error occurred while fetching members.'}
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
+  const totalUsers = filteredUsers.length;
+  const pageCount = Math.ceil(totalUsers / pageLimit);
+
   return (
     <div className="p-4 md:p-8">
       <PageHead title="Member Management | App" />
@@ -38,7 +88,7 @@ export default function MemberPage() {
         ]}
       />
       <MembersTable
-        users={users}
+        users={paginatedUsers}
         page={page}
         totalUsers={totalUsers}
         pageCount={pageCount}

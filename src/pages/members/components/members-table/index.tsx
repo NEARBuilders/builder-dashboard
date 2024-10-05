@@ -1,9 +1,10 @@
 import DataTable from '@/components/shared/data-table';
 import { columns } from './columns';
 import MemberTableActions from './member-table-action';
+import { Member } from '@/lib/dao/members';
 
 type TMembersTableProps = {
-  users: any;
+  users: Member[];
   page: number;
   totalUsers: number;
   pageCount: number;

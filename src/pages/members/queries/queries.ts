@@ -1,9 +1,13 @@
-import { getMembers } from '@/lib/api';
+import { useWallet } from '@/hooks/use-wallet';
+import { getMembers } from '@/lib/dao/members';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetMembers = (offset, pageLimit, country) => {
+export const useGetMembers = () => {
+  // Needed because can't view without a wallet...
+  const { wallet } = useWallet();
   return useQuery({
-    queryKey: ['members', offset, pageLimit, country],
-    queryFn: async () => getMembers(offset, pageLimit, country)
+    queryKey: ['members'],
+    queryFn: async () => getMembers(wallet!),
+    retry: 3
   });
 };

@@ -1,9 +1,9 @@
 import { Checkbox } from '@/components/ui/checkbox';
-import { Employee } from '@/constants/data';
+import { Member } from '@/lib/dao/members';
 import { ColumnDef } from '@tanstack/react-table';
 import { CellAction } from './cell-action';
 
-export const columns: ColumnDef<Employee>[] = [
+export const columns: ColumnDef<Member>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -24,24 +24,12 @@ export const columns: ColumnDef<Employee>[] = [
     enableHiding: false
   },
   {
-    accessorKey: 'first_name',
-    header: 'NAME'
+    accessorKey: 'id',
+    header: 'ID'
   },
   {
-    accessorKey: 'country',
-    header: 'COUNTRY'
-  },
-  {
-    accessorKey: 'email',
-    header: 'EMAIL'
-  },
-  {
-    accessorKey: 'job',
-    header: 'COMPANY'
-  },
-  {
-    accessorKey: 'gender',
-    header: 'GENDER'
+    accessorKey: 'roles',
+    header: 'ROLES'
   },
   {
     id: 'actions',

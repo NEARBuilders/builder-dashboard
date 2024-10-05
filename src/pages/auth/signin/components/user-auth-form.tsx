@@ -22,7 +22,7 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm() {
-  const { wallet } = useWallet();
+  const { wallet, signedAccountId } = useWallet();
 
   const router = useRouter();
   const [loading] = useState(false);
@@ -64,14 +64,24 @@ export default function UserAuthForm() {
               </FormItem>
             )}
           /> */}
+      {signedAccountId ? (
+        <Button
+          disabled={loading}
+          className="ml-auto w-full"
+          onClick={() => wallet?.signOut()}
+        >
+          Disconnect Wallet
+        </Button>
+      ) : (
+        <Button
+          disabled={loading}
+          className="ml-auto w-full"
+          onClick={() => wallet?.signIn()}
+        >
+          Connect Wallet
+        </Button>
+      )}
 
-      <Button
-        disabled={loading}
-        className="ml-auto w-full"
-        onClick={() => wallet?.signIn()}
-      >
-        Connect Wallet
-      </Button>
       {/* </form>
       </Form>
       <div className="relative">

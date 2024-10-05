@@ -1,4 +1,4 @@
-import { Wallet } from '@/lib/wallet';
+import { NETWORK_ID, Wallet } from '@/lib/near';
 import { create as createStore } from 'zustand';
 
 interface StoreState {
@@ -14,7 +14,7 @@ interface StoreState {
 export const useWallet = createStore<StoreState>((set) => ({
   wallet: undefined,
   signedAccountId: '',
-  networkId: 'testnet',
+  networkId: NETWORK_ID,
   setNetworkId: (networkId) => set({ networkId }),
   setWallet: (wallet) => set({ wallet }),
   setSignedAccountId: (signedAccountId) => {

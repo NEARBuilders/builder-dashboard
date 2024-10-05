@@ -1,5 +1,5 @@
 import { useWallet } from '@/hooks/use-wallet';
-import { Wallet } from '@/lib/wallet';
+import { Wallet } from '@/lib/near';
 import React, { useEffect } from 'react';
 
 type AuthProviderProps = {

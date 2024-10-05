@@ -7,13 +7,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { Employee } from '@/constants/data';
 import { Edit, MoreHorizontal, Trash } from 'lucide-react';
 import { useRouter } from '@/routes/hooks';
 import { useState } from 'react';
+import { Member } from '@/lib/dao/members';
 
 interface CellActionProps {
-  data: Employee;
+  data: Member;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {

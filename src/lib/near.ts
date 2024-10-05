@@ -13,6 +13,7 @@ import { setupModal } from '@near-wallet-selector/modal-ui';
 const THIRTY_TGAS = '30000000000000';
 const NO_DEPOSIT = '0';
 
+export const NETWORK_ID = 'mainnet';
 export class Wallet {
   /**
    * @constructor
@@ -23,7 +24,7 @@ export class Wallet {
    * wallet.startUp((signedAccountId) => console.log(signedAccountId));
    */
   constructor({
-    networkId = 'testnet' /*??*/,
+    networkId = NETWORK_ID /*??*/,
     createAccessKeyFor = undefined
   }) {
     // @ts-expect-error - "property does not exist", ya whatever
@@ -85,6 +86,7 @@ export class Wallet {
   signIn = async () => {
     // @ts-expect-error - "property does not exist", ya whatever
     const modal = setupModal(await this.selector, {
+      // @ts-expect-error - "property does not exist", ya whatever
       contractId: this.createAccessKeyFor
     });
     modal.show();
