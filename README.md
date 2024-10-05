@@ -76,6 +76,18 @@ It also includes further integrations to connect to the [NEAR Protocol](https://
 - NEAR Client - [Naxios](https://github.com/wpdas/naxios)
 - Wallet - [NEAR Wallet Selector](https://github.com/near/wallet-selector)
 
+## Customizing
+
+Common configurations have been abstracted to make customizing this dashboard for your own DAO as easy as possible.
+
+### Colors
+
+Modify :root (light) and :dark values in [index.css](./src/index.css) -- convert hex values into RGB and set the existing primary, secondary, accent, etc.
+
+### Logos
+
+Set the assets for logo-icon and logo-text in [assets](./src/assets/). Further configure by changing elements for specific variants (main-hero, mobile-sidebar, dashboard-sidebar, etc) in [components/dao](./src/components/dao).
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
