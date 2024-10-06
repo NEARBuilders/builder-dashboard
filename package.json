@@ -32,6 +32,7 @@
     ]
   },
   "dependencies": {
+    "@builddao/near-social-js": "^1.1.0",
     "@hookform/resolvers": "^3.3.4",
     "@near-js/providers": "^1.0.0",
     "@near-wallet-selector/core": "^8.9.7",
