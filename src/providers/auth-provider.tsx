@@ -1,6 +1,7 @@
 import { useWallet } from '@/hooks/use-wallet';
 import { Wallet } from '@/lib/near';
 import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -23,7 +24,10 @@ const MPC_VARIABLE = {
 const getNearContract = (networkId: string) => contractPerNetwork[networkId];
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const { setWallet, setSignedAccountId, networkId } = useWallet();
+  const { setWallet, setSignedAccountId, networkId, signedAccountId } =
+    useWallet();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const wallet = new Wallet({
@@ -34,6 +38,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
     setWallet(wallet);
   }, [networkId]);
+
+  console.log('signedAccountId', signedAccountId);
+
+  useEffect(() => {
+    if (signedAccountId === undefined && location.pathname !== '/login') {
+      navigate('/login');
+    }
+  }, [signedAccountId]);
 
   return <>{children}</>;
 }

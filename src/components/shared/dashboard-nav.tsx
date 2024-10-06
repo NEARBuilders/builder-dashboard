@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/tooltip';
 import { usePathname } from '@/routes/hooks';
 import { Link } from 'react-router-dom';
+import UserNav from './user-nav';
+import { ModeToggle } from './theme-toggle';
 
 interface DashboardNavProps {
   items: NavItem[];
@@ -75,6 +77,10 @@ export default function DashboardNav({
           );
         })}
       </TooltipProvider>
+      <div className="ml-4 flex items-center md:ml-6">
+        <UserNav />
+        <ModeToggle />
+      </div>
     </nav>
   );
 }

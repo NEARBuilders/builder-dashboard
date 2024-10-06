@@ -10,8 +10,11 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { useWallet } from '@/hooks/use-wallet';
 
 export default function UserNav() {
+  const { wallet, signedAccountId } = useWallet();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -32,7 +35,7 @@ export default function UserNav() {
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{'Admin'}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {'admin@gmail.com'}
+              {signedAccountId}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -53,7 +56,7 @@ export default function UserNav() {
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => console.log('logout')}>
+        <DropdownMenuItem onClick={() => wallet?.signOut()}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

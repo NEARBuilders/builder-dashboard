@@ -24,11 +24,5 @@ export const navItems: NavItem[] = [
     href: '/settings',
     icon: 'cog',
     label: 'Settings'
-  },
-  {
-    title: 'Login',
-    href: '/login',
-    icon: 'login',
-    label: 'Login'
   }
 ];

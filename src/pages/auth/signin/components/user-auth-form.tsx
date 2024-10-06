@@ -11,8 +11,9 @@ import { Input } from '@/components/ui/input';
 import { useWallet } from '@/hooks/use-wallet';
 import { useRouter } from '@/routes/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as z from 'zod';
 
 const formSchema = z.object({
@@ -23,6 +24,7 @@ type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserAuthForm() {
   const { wallet, signedAccountId } = useWallet();
+  const navigate = useNavigate();
 
   const router = useRouter();
   const [loading] = useState(false);
@@ -38,6 +40,12 @@ export default function UserAuthForm() {
     console.log('data', data);
     router.push('/');
   };
+
+  useEffect(() => {
+    if (signedAccountId) {
+      navigate('/');
+    }
+  }, [signedAccountId]);
 
   return (
     <>
