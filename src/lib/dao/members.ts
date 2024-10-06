@@ -1,4 +1,5 @@
 import { Wallet } from '@/lib/near';
+import { DAO_ID } from './config';
 
 export type Member = {
   id: string;
@@ -36,7 +37,7 @@ const processPolicy = (policy) => {
 export async function getMembers(wallet: Wallet): Promise<Member[]> {
   try {
     const policy = await wallet.viewMethod({
-      contractId: 'build.sputnik-dao.near',
+      contractId: DAO_ID,
       method: 'get_policy'
     });
     const daoDetails = processPolicy(policy);

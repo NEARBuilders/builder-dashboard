@@ -10,6 +10,11 @@ const SignInPage = lazy(() => import('@/pages/auth/signin'));
 const DashboardPage = lazy(() => import('@/pages/dashboard'));
 const MemberPage = lazy(() => import('@/pages/members'));
 const MemberDetailPage = lazy(() => import('@/pages/members/MemberDetailPage'));
+const ProposalsPage = lazy(() => import('@/pages/proposals'));
+const ProposalDetailPage = lazy(
+  () => import('@/pages/proposals/ProposalDetailPage')
+);
+const SettingsPage = lazy(() => import('@/pages/settings'));
 
 // ----------------------------------------------------------------------
 
@@ -36,6 +41,18 @@ export default function AppRouter() {
         {
           path: 'member/details',
           element: <MemberDetailPage />
+        },
+        {
+          path: 'proposal',
+          element: <ProposalsPage />
+        },
+        {
+          path: 'proposal/details',
+          element: <ProposalDetailPage />
+        },
+        {
+          path: 'settings',
+          element: <SettingsPage />
         },
         {
           path: 'form',
